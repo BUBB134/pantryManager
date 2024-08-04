@@ -31,7 +31,11 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    handleSearch(searchQuery);
+  }, [searchQuery, inventory]);
 
+  
   const getUserItemRef = (itemName) => {
     if (!user) return null;
     const userId = user.uid;

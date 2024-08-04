@@ -61,7 +61,7 @@ export default function Login() {
                 onClick={() => router.push('/signup')}
                 sx={{ marginTop: 2 }}
             >
-                Don't have an account? Sign Up
+                Don&apos;t have an account? Sign Up
             </Button>
         </Box>
     );

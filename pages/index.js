@@ -1,8 +1,9 @@
-'use client'
+
 import { auth, firestore } from '@/firebase';
 import { Box, Button, Card, CardActions, CardContent, Checkbox, FormControl, InputLabel, MenuItem, Modal, Select, Stack, TextField, Typography } from '@mui/material';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, deleteDoc, doc, getDoc, getDocs, query, setDoc } from 'firebase/firestore';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -26,9 +27,10 @@ export default function Home() {
         updateInventory();
       }
     });
-
+  
     return () => unsubscribe();
-  }, [user]);
+  }, []);
+
 
   const getUserItemRef = (itemName) => {
     if (!user) return null;
@@ -178,6 +180,8 @@ export default function Home() {
     }
   };
 
+  updateInventory();
+
   return (
     <Box display={"flex"} flexDirection={"column"} alignItems={"center"} padding={5} maxWidth="1200px" margin="0 auto">
       {user ? (
@@ -197,7 +201,7 @@ export default function Home() {
           </Stack>
         </>
       ) : (
-        <Typography variant='h6'>Please <a href='/login'>Log In</a> or <a href='/signup'>Sign Up</a></Typography>
+        <Typography variant='h6'>Please <Link href='/login'>Log In</Link> or <Link href='/signup'>Sign Up</Link></Typography>
       )}
       <Stack spacing={3} width={"100%"}>
         {filteredInventory.map(({ id, name, quantity, unit }) => (
